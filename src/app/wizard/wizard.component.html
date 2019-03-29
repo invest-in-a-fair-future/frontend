@@ -1,0 +1,28 @@
+<ng-container [ngSwitch]="step">
+  <div *ngSwitchCase="1">
+    <h1>Welcome, let's create your account</h1>
+    <h2>Please tell us your role</h2>
+    <app-radio-input [name]="'role'" [label]="'Partner'"></app-radio-input>
+    <app-radio-input [name]="'role'" [label]="'Company'"></app-radio-input>
+    <app-radio-input [name]="'role'" [label]="'Community Manager'"></app-radio-input>
+  </div>
+  <div *ngSwitchCase="2">
+    <h1>Tell us about your company</h1>
+    <h2></h2>
+    <app-text-input [model]="company" [field]="'name'" [label]="'Name'"></app-text-input>
+    <app-text-input [model]="company" [field]="'address'" [label]="'Address'"></app-text-input>
+    <app-text-input [model]="company" [field]="'country'" [label]="'Country'"></app-text-input>
+    <app-text-input [model]="company" [field]="'email'" [label]="'Email'"></app-text-input>
+    <app-text-input [model]="company" [field]="'phoneNumber'" [label]="'Phone'"></app-text-input>
+  </div>
+  <div *ngSwitchCase="3">
+    <h1>Let's verify</h1>
+    <h2>To verify you as a Dutch company, we would like to know your <strong>Kamer van Koophandel</strong> number.</h2>
+    <app-text-input [model]="company" [field]="'taxId'" [label]="'KVK'"></app-text-input>
+  </div>
+</ng-container>
+
+<button [disabled]="step == minStep" (click)="prevStep()">prev</button>
+<button [disabled]="step == maxStep" (click)="nextStep()">next</button>
+
+<button *ngIf="step == maxStep" (click)="submit()">Submit</button>
